@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Ivankarez.RacetrackGenerator
+namespace Ivankarez.RacetrackGenerator.Editor
 {
     public struct TrackSample
     {
