@@ -8,5 +8,7 @@ namespace Ivankarez.RacetrackGenerator
         public Vector3[] rightLine;
         public Vector3[] centerLine;
         public Vector3[] racingLine;
+        public float[] racingLineSuggestedSpeeds;
+        public float[] centerLineSuggestedSpeeds;
     }
 }

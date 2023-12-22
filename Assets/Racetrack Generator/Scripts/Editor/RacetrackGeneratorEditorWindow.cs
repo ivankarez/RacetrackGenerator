@@ -13,6 +13,9 @@ namespace Ivankarez.RacetrackGenerator.Editor
         private TextAsset racingLineCsv;
         private Mesh targetMesh;
         private TrackData targetTrackData;
+        private float maxSpeed = 180;
+        private float agility = 25;
+        private float decelerationRate = 10;
 
         [MenuItem("Window/Racetrack Generator")]
         public static void ShowWindow()
@@ -30,6 +33,12 @@ namespace Ivankarez.RacetrackGenerator.Editor
             GUILayout.Label("Racetrack Generator", titleStyle);
             GUILayout.Space(10);
 
+            GUILayout.Label("Suggested Speed Parameters:", EditorStyles.boldLabel);
+            maxSpeed = EditorGUILayout.FloatField("Max Speed:", maxSpeed);
+            agility = EditorGUILayout.FloatField("Agility:", agility);
+            decelerationRate = EditorGUILayout.FloatField("Deceleration Rate:", decelerationRate);
+
+            GUILayout.Space(10);
             GUILayout.Label("Input Data:", EditorStyles.boldLabel);
             trackCsv = (TextAsset)EditorGUILayout.ObjectField("Track CSV:", trackCsv, typeof(TextAsset), false);
             racingLineCsv = (TextAsset)EditorGUILayout.ObjectField("Racing Line CSV:", racingLineCsv, typeof(TextAsset), false);
@@ -168,6 +177,11 @@ namespace Ivankarez.RacetrackGenerator.Editor
             trackData.leftLine = leftLine;
             trackData.rightLine = rightLine;
             trackData.racingLine = ParseRacingLineCsv();
+            if (trackData.racingLine.Length != 0)
+            {
+                trackData.racingLineSuggestedSpeeds = SuggestedSpeedCalculator.Calulcate(trackData.racingLine, decelerationRate, agility, maxSpeed);
+            }
+            trackData.centerLineSuggestedSpeeds = SuggestedSpeedCalculator.Calulcate(trackData.centerLine, decelerationRate, agility, maxSpeed);
 
             mesh.vertices = vertices;
             mesh.triangles = triangles;
