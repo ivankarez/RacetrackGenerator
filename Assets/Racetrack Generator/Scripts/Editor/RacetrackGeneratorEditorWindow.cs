@@ -35,8 +35,8 @@ namespace Ivankarez.RacetrackGenerator.Editor
             racingLineCsv = (TextAsset)EditorGUILayout.ObjectField("Racing Line CSV:", racingLineCsv, typeof(TextAsset), false);
 
             GUILayout.Space(10);
-            GUILayout.Label("A new asset will be created in the Asset folder if no instance is specified", EditorStyles.helpBox);
             GUILayout.Label("Output Assets:", EditorStyles.boldLabel);
+            GUILayout.Label("A new asset will be created in the Asset folder if no instance is specified", EditorStyles.helpBox);
             targetMesh = (Mesh)EditorGUILayout.ObjectField("Target Mesh:", targetMesh, typeof(Mesh), false);
             targetTrackData = (TrackData)EditorGUILayout.ObjectField("Target Track Data:", targetTrackData, typeof(TrackData), false);
 
